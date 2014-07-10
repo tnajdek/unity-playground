@@ -5,7 +5,7 @@ public class Client : MonoBehaviour {
 	public bool playing = false;
 	public string username = "Unnamed Guest";
 
-	private Camera camera;
+	private Camera cam;
 	private GameObject ground;
 
 	public static void StartClient() {
@@ -36,19 +36,19 @@ public class Client : MonoBehaviour {
 	}
 
 	void Awake() {
-		camera = GameObject.FindObjectOfType<Camera>();
+		cam = GameObject.FindObjectOfType<Camera>();
 		ground = GameObject.Find("Ground");
 	}
 
 	void Update() {
 		float distance = 10000F;
 		RaycastHit info;
-		Ray vRay = camera.ScreenPointToRay(Input.mousePosition);
+		Ray vRay = cam.ScreenPointToRay(Input.mousePosition);
 
 		if (Input.GetMouseButtonDown(0)) {
 			Debug.Log("Pressed left click.");
 			if(ground.collider.Raycast(vRay, out info, distance)) {
-				Debug.Log(info.point);
+				networkView.RPC("WalkTo", RPCMode.Server, info.point);
 			} else {
 				Debug.Log("no collision...");
 			}
