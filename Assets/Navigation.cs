@@ -4,6 +4,8 @@ using System.Collections;
 public class Navigation : MonoBehaviour {
 	public Vector3 destination;
 	private float turnSmoothing = 15f;
+	private Animator anim;
+	private NavMeshAgent nav;
 
 	// Use this for initialization
 	void Start() {
@@ -12,19 +14,69 @@ public class Navigation : MonoBehaviour {
 			this.enabled = false;
 		}
 	}
+
+	void Awake() {
+		destination = transform.position;
+		nav = GetComponent<NavMeshAgent>();
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(destination != null) {
-			Rotating();
-		}
-	
-	}
+		nav.SetDestination(destination);
+		nav.speed = 6f;
 
-	void Rotating() {
-		Quaternion targetRotation = Quaternion.LookRotation(destination, Vector3.up);
-		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
-		transform.rotation = newRotation;
-		Debug.Log(newRotation);
+		if(nav.remainingDistance < nav.stoppingDistance) {
+			nav.Stop();
+		}
 	}
+	
+//	bool Rotating() {
+//		Vector3 targetVector = destination - transform.position;
+//		float distance = Vector3.Distance(rigidbody.position, destination);
+//		float diff = Mathf.Deg2Rad * Vector3.Angle(transform.forward, targetVector);
+//		float prevAngularSpeed = anim.GetFloat("AngularSpeed");
+//
+//		float dot = Vector3.Dot(transform.forward.normalized, targetVector.normalized);
+//		Debug.Log("distance: " + distance);
+//		Debug.Log("dot " + dot);
+//		Debug.Log("angle: " + diff);
+//
+//		if(distance > 0.1f)  {
+//			anim.SetFloat("AngularSpeed", dot);
+//			if(Mathf.Abs(dot) < 0.5f) {
+//				//transform.LookAt(targetVector);
+//				//transform.rotation.SetLookRotation(targetVector);
+//				anim.SetFloat("AngularSpeed", 0f);
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		} else {
+//			anim.SetFloat("AngularSpeed", 0f);
+//			return true;
+//		}
+//	}
+//
+//	void Moving(bool rightDirection) {
+//		float distance = Vector3.Distance(rigidbody.position, destination);
+//		float curSpeed = anim.GetFloat("Speed");
+//		float maxSpeed = 6.0f;
+//		float targetSpeed;
+//
+//		//Debug.Log("Walking");
+//		//Debug.Log(distance);
+//
+//		if(!rightDirection) {
+//			targetSpeed = Mathf.Lerp(curSpeed, 0f, Time.deltaTime);
+//			anim.SetFloat("Speed", targetSpeed);
+//		} else if(distance > 0.5f) {
+//			targetSpeed = Mathf.Lerp(curSpeed, maxSpeed, Time.deltaTime);
+//			anim.SetFloat("Speed", targetSpeed);
+//		} else if(distance > 0.25f) {
+//			targetSpeed = Mathf.Lerp(curSpeed, 0f, Time.deltaTime);
+//			anim.SetFloat("Speed", targetSpeed);
+//		} else {
+//			anim.SetFloat("Speed", 0f);
+//		}
+//	}
 }

@@ -28,7 +28,7 @@ public class Server : MonoBehaviour {
 		Debug.Log("Player " + playerCount++ + " connected from " + player.ipAddress + ":" + player.port);
 	}
 	[RPC] void SpawnPlayer(string username, NetworkMessageInfo info) {
-		GameObject playerCharacter = Network.Instantiate(playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity, 0) as GameObject;
+		GameObject playerCharacter = Network.Instantiate(playerPrefab, new Vector3(110f, 0f, 110f), Quaternion.identity, 0) as GameObject;
 		players.Add(info.sender, playerCharacter);
 	}
 	[RPC] void WalkTo(Vector3 whereTo, NetworkMessageInfo info) {
