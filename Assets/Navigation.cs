@@ -6,8 +6,11 @@ public class Navigation : MonoBehaviour {
 	private float turnSmoothing = 15f;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start() {
+		// this is server-only script.
+		if(Network.isClient) {
+			this.enabled = false;
+		}
 	}
 	
 	// Update is called once per frame

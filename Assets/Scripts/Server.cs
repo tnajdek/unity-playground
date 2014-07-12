@@ -10,6 +10,7 @@ public class Server : MonoBehaviour {
 
 	void Start() {
 		playerPrefab = Resources.Load("robot-player"); //GameObject.Find("robot-player");
+		players = new Dictionary<NetworkPlayer, GameObject>();
 	}
 
 	public static void StartServer() {
@@ -27,12 +28,13 @@ public class Server : MonoBehaviour {
 		Debug.Log("Player " + playerCount++ + " connected from " + player.ipAddress + ":" + player.port);
 	}
 	[RPC] void SpawnPlayer(string username, NetworkMessageInfo info) {
-		GameObject mehe = Network.Instantiate(playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity, 0) as GameObject;
-		Navigation nav = mehe.GetComponent<Navigation>();
-
+		GameObject playerCharacter = Network.Instantiate(playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity, 0) as GameObject;
+		players.Add(info.sender, playerCharacter);
 	}
-	[RPC] void WalkTo(Vector3 whereTo) {
-		Debug.Log(whereTo);
+	[RPC] void WalkTo(Vector3 whereTo, NetworkMessageInfo info) {
+		GameObject playerCharacter = players[info.sender];
+		Navigation playerNav = playerCharacter.GetComponent<Navigation>();
+		playerNav.destination = whereTo;
 	}
 	#endif
 }
