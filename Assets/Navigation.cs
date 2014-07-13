@@ -14,6 +14,8 @@ public class Navigation : MonoBehaviour {
 			this.enabled = false;
 			anim = GetComponent<Animator>();
 			anim.applyRootMotion = false;
+			GetComponent<CapsuleCollider>().enabled = false;
+			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 		}
 	}
 

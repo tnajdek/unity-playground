@@ -13,6 +13,11 @@ public class Server : MonoBehaviour {
 		players = new Dictionary<NetworkPlayer, GameObject>();
 	}
 
+	void OnGUI() {
+		GUI.Box(new Rect(10, 10, 100, 20), Network.player.ipAddress);
+		GUI.Box(new Rect(10, 40, 100, 20), "NAT ok? " + Network.HavePublicAddress());
+	}
+
 	public static void StartServer() {
 		//Network.incomingPassword = "";
 		//bool useNat = !Network.HavePublicAddress();
@@ -30,6 +35,7 @@ public class Server : MonoBehaviour {
 	[RPC] void SpawnPlayer(string username, NetworkMessageInfo info) {
 		GameObject playerCharacter = Network.Instantiate(playerPrefab, new Vector3(110f, 0f, 110f), Quaternion.identity, 0) as GameObject;
 		players.Add(info.sender, playerCharacter);
+		networkView.RPC("SelectHero", info.sender, playerCharacter.networkView.viewID);
 	}
 	[RPC] void WalkTo(Vector3 whereTo, NetworkMessageInfo info) {
 		if(players.ContainsKey(info.sender)) {

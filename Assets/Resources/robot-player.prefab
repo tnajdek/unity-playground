@@ -1461,8 +1461,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100102}
-  m_LocalRotation: {x: .468123376, y: 0, z: 0, w: .883663177}
-  m_LocalPosition: {x: 0, y: 1.61433721, z: .0101699829}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 1.68564034, z: .0101699829}
   m_LocalScale: {x: 1, y: 1, z: .99999994}
   m_Children: []
   m_Father: {fileID: 400100}
@@ -1479,7 +1479,7 @@ Rigidbody:
   m_AngularDrag: .5
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &9500000
@@ -1506,9 +1506,9 @@ Light:
   serializedVersion: 3
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 3
-  m_SpotAngle: 30
+  m_Intensity: 2
+  m_Range: 2.73000002
+  m_SpotAngle: 90
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1519,7 +1519,7 @@ Light:
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_ActuallyLightmapped: 0
+  m_ActuallyLightmapped: 1
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -1605,7 +1605,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: 0a7b72b127f9756429382749e43cafff, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
+  m_UseLightProbes: 1
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
