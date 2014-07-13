@@ -32,9 +32,11 @@ public class Server : MonoBehaviour {
 		players.Add(info.sender, playerCharacter);
 	}
 	[RPC] void WalkTo(Vector3 whereTo, NetworkMessageInfo info) {
-		GameObject playerCharacter = players[info.sender];
-		Navigation playerNav = playerCharacter.GetComponent<Navigation>();
-		playerNav.destination = whereTo;
+		if(players.ContainsKey(info.sender)) {
+			GameObject playerCharacter = players[info.sender];
+			Navigation playerNav = playerCharacter.GetComponent<Navigation>();
+			playerNav.destination = whereTo;
+		}
 	}
 	#endif
 }
