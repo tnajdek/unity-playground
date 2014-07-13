@@ -9,7 +9,12 @@ public class PlayerAnimation : MonoBehaviour
 	private NavMeshAgent nav;					// Reference to the nav mesh agent.
 	private Animator anim;						// Reference to the Animator.
 	private AnimatorSetup animSetup;		// An instance of the AnimatorSetup helper class.
-	
+
+	void Start() {
+		if(Network.isClient) {
+			this.enabled = false;
+		}
+	}
 	
 	void Awake () {
 		// Setting up the references.

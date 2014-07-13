@@ -12,6 +12,8 @@ public class Navigation : MonoBehaviour {
 		// this is server-only script.
 		if(Network.isClient) {
 			this.enabled = false;
+			anim = GetComponent<Animator>();
+			anim.applyRootMotion = false;
 		}
 	}
 
