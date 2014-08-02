@@ -763,12 +763,12 @@ GameObject:
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
   - 136: {fileID: 13600000}
-  - 148: {fileID: 14800000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400002}
   - 148: {fileID: 14800002}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: robot-player
   m_TagString: Untagged
@@ -1447,7 +1447,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 100}
+  m_LocalPosition: {x: 5.96046448e-08, y: -.869835556, z: -.00896766782}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400102}
@@ -1577,6 +1577,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e622f1adf17bec645a11c00d06058996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3642032ac0a16488b7fca561b9bc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1669,18 +1680,6 @@ SkinnedMeshRenderer:
     m_Center: {x: .270245999, y: -.0418999046, z: 2.98023224e-08}
     m_Extent: {x: .952545166, y: .231277123, z: .651418328}
   m_DirtyAABB: 0
---- !u!148 &14800000
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100100}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 400100}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
 --- !u!148 &14800002
 NetworkView:
   m_ObjectHideFlags: 1
